@@ -88,7 +88,14 @@ function simulation01Helper() {
         return;      
       }else {
         processed_time_total += result.res.processed_time;
-        $("#simulation01Id").html(`Simluation(${processed_time_total.toPrecision(3)}s)`);  
+        if (processed_time_total > 20) {
+          $("#simulation01Id").html(`Simluation(${processed_time_total.toPrecision(3)}s)(Already take too much time)`);  
+          $("#simulation01Id").css("background-color", notpassed_toolong_color_bg);  
+          resolve();
+          return;
+        }else {
+          $("#simulation01Id").html(`Simluation(${processed_time_total.toPrecision(3)}s)`);  
+        }
       }
     }
 
